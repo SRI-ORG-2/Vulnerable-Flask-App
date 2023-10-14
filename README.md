@@ -1,4 +1,5 @@
 # Vulnerable-Flask-App
+This project is created for Hacktoberfest, showcasing common security vulnerabilities like SQL injection. The purpose is to educate and create awareness among developers about the potential risks of insecure coding practices.
 
 # Hacktoberfest23
 
@@ -14,30 +15,30 @@ A month-long celebration from October 1st - 31st to get people involved in [Open
  
   Your PR must be made to a public, unarchived repository.
   
-  
-
-
 
 # 📌 Videos 📽️:
 
 - [How to pull request [Overview]](https://youtu.be/DIj2q02gvKs)
 - [Merge Conflict / comment](https://youtu.be/zOx5PJTY8CI)
 
+## Project Overview
 
-# Contribution Rules📚:
+The project demonstrates a vulnerable Flask web application that is susceptible to SQL injection attacks. It is designed for educational purposes only and should not be used in production environments. Developers can use this project to understand how SQL injection works and learn about best practices for securing web applications.
 
-- You are allowed to make pull requests that break the rules. We just merge it ;)
-- Do NOT add any build steps e.g npm install (we want to keep this a simple static site)
-- Do NOT remove other content.
-- Styling/code can be pretty, ugly or stupid, big or small as long as it works
-<!-- - Add your name to the contributorsList file. -->
-- Try to keep pull requests small to minimize merge conflicts
+## Features
+
+- Vulnerable Flask web application
+- Simulated SQL injection attack scenarios
+- Educational resources and documentation on preventing SQL injection
+
 
 
 ## Getting Started 🤩🤗:
 
 
 - Fork this repo (button on top)
+<br>
+<br>
 - Clone on your local machine
 
 ```terminal
@@ -74,11 +75,19 @@ git push origin my-new-branch
 
 <br>
 
-## Installation steps for Project 
+## Installation
 
-#### Install Live Server Extention in Visual Studio Code
-#### Run index.html using Live Server
+1. Install Flask
 
+```bash
+  pip install -r requirements.txt
+```
+
+2. Run the Flask application.
+```bash
+  python main.py
+```
+3. Access the application in your web browser at 'http://localhost:5000'
 <br>
 
 ## Avoid Conflicts {Syncing your fork}
@@ -102,3 +111,7 @@ git merge upstream/master
 This will give you any eventual conflicts and allow you to easily solve them in your repo. It's a good idea to use it frequently in between your own commits to make sure that your repo is up to date with its parent.
 
 For more information on syncing forks [read this article from Github](https://help.github.com/articles/syncing-a-fork/).
+
+## Contact
+
+If you have any questions or suggestions regarding the project, feel free to contact us at sharodubey1312@gmail.com.
