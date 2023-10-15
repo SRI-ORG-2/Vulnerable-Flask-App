@@ -6,8 +6,7 @@ This project is created for Hacktoberfest, showcasing common security vulnerabil
 ## What is Hacktoberfest?
 A month-long celebration from October 1st - 31st to get people involved in [Open Source](https://github.com/open-source).
 
-![HacktoberFest2023](https://github.com/Google-DSC-DMCE/Expense-Tracker-Hacktober2023/assets/98736611/b2548c4a-8940-40e7-bc07-49a7b663836f)
-
+![HacktoberFest2023](https://github.com/Google-DSC-DMCE/Vulnerable-Flask-App/assets/98736611/4746ad05-ea58-482d-aedf-8716dd359415)
 
 ## Specifically for Hacktoberfest:
 
