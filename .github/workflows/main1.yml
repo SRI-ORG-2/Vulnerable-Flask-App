@@ -1,0 +1,49 @@
+name: Aqua Python Scan
+
+on: [pull_request, push]
+
+jobs:
+  aqua:
+    name: Aqua Scanner for Python
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip freeze > requirements.lock
+
+      - name: Run Aqua Scanner
+        uses: docker://aquasec/aqua-scanner:latest
+        with:
+          args: trivy fs --debug --ignorefile .trivyignore --scanners vuln,misconfig,secret --format table --output trivy-results.txt .
+
+        env:
+          TRIVY_USERNAME: ${{ secrets.TRIVY_USERNAME }}
+          TRIVY_PASSWORD: ${{ secrets.TRIVY_PASSWORD }}
+          AQUA_KEY: ${{ secrets.AQUA_KEY }}
+          AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
+          GITHUB_TOKEN: ${{ github.token }}
+          AQUA_URL: https://api.supply-chain.cloud.aquasec.com
+          CSPM_URL: https://api.cloudsploit.com
+          TRIVY_RUN_AS_PLUGIN: 'aqua'
+
+      - name: Upload Scan Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: trivy-results
+          path: trivy-results.txt
