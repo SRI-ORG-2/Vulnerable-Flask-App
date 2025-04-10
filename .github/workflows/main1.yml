@@ -1,10 +1,10 @@
-name: Aqua Python Scan
+name: Aqua Scanner Python CI
 
 on: [pull_request, push]
 
 jobs:
   aqua:
-    name: Aqua Scanner for Python
+    name: Aqua scanner for Python
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -21,16 +21,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip freeze > requirements.lock
 
       - name: Run Aqua Scanner
         uses: docker://aquasec/aqua-scanner:latest
         with:
-          args: trivy fs --debug --ignorefile .trivyignore --scanners vuln,misconfig,secret --format table --output trivy-results.txt .
+          args: trivy fs --debug --ignorefile .trivyignore --scanners misconfig,vuln,secret --sast --db-repository=registry.aquasec.com/aquasec/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1 .
 
         env:
           TRIVY_USERNAME: ${{ secrets.TRIVY_USERNAME }}
@@ -43,7 +40,7 @@ jobs:
           TRIVY_RUN_AS_PLUGIN: 'aqua'
 
       - name: Upload Scan Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: trivy-results
           path: trivy-results.txt
